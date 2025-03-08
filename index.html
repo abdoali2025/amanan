@@ -88,6 +88,13 @@
             display: block;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
+
+        /* تنسيق التاريخ والوقت */
+        .datetime {
+            font-size: 14px;
+            direction: ltr;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -106,9 +113,26 @@
 
     <div class="footer">
         Prepared by: Eng. Abdulrazzaq Al-Jabri
+        <div class="datetime" id="datetime"></div>
     </div>
 
     <script>
+        // دالة تحديث التاريخ والوقت
+        function updateDateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('ar-EG', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const time = now.toLocaleTimeString('ar-EG');
+            document.getElementById('datetime').innerHTML = `${date} <br> ${time}`;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // دالة استخراج الرقم السري
         function extractSecretCode() {
             const accountNumber = document.getElementById("accountNumber").value;
             
