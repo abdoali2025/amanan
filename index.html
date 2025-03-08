@@ -13,31 +13,41 @@
             background-size: cover;
             color: white;
             padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+
         .container {
             background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             max-width: 450px;
-            margin: auto;
+            margin: 20px auto;
             color: #333;
         }
+
         h2 {
             color: #00416A;
+            margin: 15px 0;
         }
+
         input {
-            width: 100%;
-            padding: 10px;
+            width: 90%;
+            padding: 12px;
             margin: 10px 0;
             font-size: 18px;
             border: 2px solid #00416A;
             border-radius: 5px;
             text-align: center;
         }
+
         button {
-            width: 100%;
-            padding: 10px;
+            width: 95%;
+            padding: 12px;
             font-size: 18px;
             background-color: #799F0C;
             color: white;
@@ -45,55 +55,76 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            margin-top: 10px;
         }
+
         button:hover {
             background-color: #5e7f0a;
         }
+
         .result {
             font-size: 22px;
             font-weight: bold;
-            margin-top: 20px;
-            padding: 10px;
+            margin: 15px 0;
+            padding: 12px;
             background: #FFE000;
             color: #333;
             border-radius: 5px;
         }
+
         .footer {
-            margin-top: 20px;
             font-size: 16px;
-            color: #fff;
+            color: white;
             background: rgba(0, 0, 0, 0.3);
             padding: 10px;
             border-radius: 5px;
+            margin: 20px auto;
+            max-width: 450px;
         }
+
         .logo {
-            width: 100px;
-            margin-bottom: 20px;
+            width: 120px;
+            margin: 0 auto 20px;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
     </style>
 </head>
 <body>
-    <img src="bank-logo.jpg" alt="شعار مصرف الأمان" class="logo">
+    <img src="bank-logo.png" alt="شعار مصرف الأمان" class="logo">
+
     <div class="container">
         <h2>استخراج الرقم السري - مصرف الأمان</h2>
+        
         <label for="accountNumber">أدخل رقم الحساب:</label>
         <input type="text" id="accountNumber" placeholder="أدخل رقم الحساب (14 رقم)" maxlength="14">
+        
         <button onclick="extractSecretCode()">استخراج الرقم السري</button>
+        
         <div class="result" id="secretCode"></div>
     </div>
+
     <div class="footer">
-        إعداد: م. عبدالرزاق الجابري
+        Prepared by: Eng. Abdulrazzaq Al-Jabri
     </div>
+
     <script>
         function extractSecretCode() {
-            let accountNumber = document.getElementById("accountNumber").value;
+            const accountNumber = document.getElementById("accountNumber").value;
+            
             if (accountNumber.length !== 14 || isNaN(accountNumber)) {
-                alert("يرجى تعديل الرقم ليكون مكونًا من 14 رقمًا بالضبط.");
+                alert("❗ الرجاء إدخال 14 رقمًا صحيحًا");
                 return;
             }
-            
-            let secretCode = accountNumber[4] + accountNumber[2] + accountNumber[1] + accountNumber[5];
-            document.getElementById("secretCode").innerText = "الرقم السري: " + secretCode;
+
+            const digits = accountNumber.split('');
+            const secretCode = 
+                digits[9] +  // الخامس من اليمين
+                digits[2] +  // الثالث من اليسار
+                digits[12] + // الثاني من اليمين
+                digits[8];   // السادس من اليمين
+
+            document.getElementById("secretCode").innerText = `الرقم السري: ${secretCode}`;
         }
     </script>
 </body>
