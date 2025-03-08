@@ -80,7 +80,6 @@
         <input type="text" id="accountNumber" placeholder="أدخل رقم الحساب (14 رقم)" maxlength="14">
         <button onclick="extractSecretCode()">استخراج الرقم السري</button>
         <div class="result" id="secretCode"></div>
-        <div class="result" id="ussdCode"></div>
     </div>
     <div class="footer">
         إعداد: م. عبدالرزاق الجابري
@@ -95,7 +94,6 @@
             
             let secretCode = accountNumber[4] + accountNumber[2] + accountNumber[1] + accountNumber[5];
             document.getElementById("secretCode").innerText = "الرقم السري: " + secretCode;
-            document.getElementById("ussdCode").innerText = "كود الاستفسار: *3" + secretCode;
         }
     </script>
 </body>
